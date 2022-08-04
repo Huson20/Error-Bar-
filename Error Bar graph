@@ -1,0 +1,36 @@
+import numpy as np
+import matplotlib.pyplot as plt
+# include if using a Jupyter notebook
+%matplotlib inline
+# Data
+LB_AMP = np.array([6 ,76 ,33, 7, 86,8,0, 7, 1,])
+LB_AMP_ARA = np.array([6 ,57 ,0,4,65,10,24, 0 , 2 ])
+# Calculate the average
+LB_AMP_mean = np.mean(LB_AMP)
+LB_AMP_ARA_mean = np.mean(LB_AMP_ARA)
+# Calculate the standard deviation
+LB_AMP_std = np.std(LB_AMP)
+LB_AMP_ARA_std = np.std(LB_AMP_ARA)
+# Define labels, positions, bar heights and error bar heights
+labels = ['LB/amp', 'LB/AMP/ARA']
+x_pos = np.arange(len(labels))
+CTEs = [LB_AMP_mean, LB_AMP_ARA_mean]
+error = [LB_AMP_std, LB_AMP_ARA_std]
+# Build the plot
+fig, ax = plt.subplots()
+ax.bar(x_pos, CTEs,
+       yerr=error,
+       align='center',
+       alpha=0.5,
+       ecolor='black',
+       capsize=10)
+ax.set_ylabel('No. of Colonies')
+ax.set_xlabel('Plates')
+ax.set_xticks(x_pos)
+ax.set_xticklabels(labels)
+ax.set_title('Number of Bacterial Colonies On Diff Plates')
+ax.yaxis.grid(True)
+
+# Save the figure and show
+plt.tight_layout()
+plt.show() # function to show the plot
